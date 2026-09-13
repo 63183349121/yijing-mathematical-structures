@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite the Zenodo record below."
+title: "An affine Singer layer on F2^6, its (T,D,K) triple, and <T,D> = AGL(1,64)"
+authors:
+  - family-names: Li
+    given-names: Baohua
+    affiliation: Independent Researcher
+date-released: "2026-09-13"
+doi: "10.5281/zenodo.22731492"
+url: "https://doi.org/10.5281/zenodo.22731492"
+repository-code: "https://github.com/63183349121/yijing-mathematical-structures"
+keywords:
+  - finite fields
+  - combinatorics
+  - affine Singer map
+  - AGL(1,64)
+  - permutation
+license: CC-BY-4.0
+type: preprint
