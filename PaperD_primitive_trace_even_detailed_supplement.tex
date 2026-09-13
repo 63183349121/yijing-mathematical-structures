@@ -1,0 +1,176 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{longtable,array,booktabs}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\title{Detailed archival supplement:\\
+A self-contained proof of primitive trace-one quadratics over \(\mathbb F_{2^k}\)}
+\author{Baohua Li}
+\date{2026-09-11}
+\begin{document}
+\maketitle
+\begin{abstract}
+This supplement is an archival, expanded version of the even-characteristic PTE proof used in Paper A. It contains the complete paper proof, additional derivations of the Gauss-sum and Ramanujan-sum ingredients, the full finite certificate for \(1\le k\le29\), the exact factorizations of \(2^{2k}-1\), and reproducibility and formalization notes. The theorem is known: the statement is the \(n=2,t=1\) case of Cohen (1990, Theorem~1, p.~1), while Moreno (1989) proved the trace-one quadratic case earlier. Cohen (2003, Theorem~1.5, p.~170) gives an equivalent square-order formulation. No priority is claimed.
+\end{abstract}
+\section{Status and scope}
+The purpose of this note is to keep a detailed proof and computation archive for the following statement. It is not a claim of new priority for the theorem itself. Paper A uses a compressed version of this material in its Appendix~B.
+\section{The theorem and notation}
+\begin{theorem}\label{thm:pte}
+For every \(k\ge1\), there exists
+\[
+\beta\in\mathbb F_{2^{2k}}^*,\qquad
+\operatorname{ord}(\beta)=2^{2k}-1,\qquad
+\operatorname{Tr}_{\mathbb F_{2^{2k}}/\mathbb F_{2^k}}(\beta)=1.
+\]
+Equivalently, there is an irreducible quadratic \(X^2+X+a\in\mathbb F_{2^k}[X]\) whose roots are primitive.
+\end{theorem}
+\section{Detailed proof}
+\input{detailed_proof_body.tex}
+\section{Supplementary derivations}
+\subsection{Gauss-sum squared modulus}
+For a nontrivial multiplicative character \(\chi\) of \(L^*\), put
+\[
+g_L(\chi)=\sum_{x\in L^*}\chi(x)\psi_L(x).
+\]
+Then
+\[
+|g_L(\chi)|^2
+=\sum_{t\in L^*}\chi(t)^{-1}\sum_{a\in L^*}\psi_L(a(1-t)).
+\]
+For \(t=1\), the inner sum is \(|L|-1\); for \(t\ne1\), it is \(-1\). Since \(\sum_{t\in L^*}\chi(t)^{-1}=0\), the double sum is \(|L|\). This is the calculation used in the proof.
+\subsection{Ramanujan-sum identity}
+Let \(M\) be the order of \(L^*\), fix a generator \(g\), and write \(x=g^a\). For a character \(\chi_j(g)=e^{2\pi i j/M}\), the Fourier coefficient of the indicator of \(\gcd(a,M)=1\) is
+\[
+c_M(j)=\sum_{\substack{a\bmod M\\(a,M)=1}}e^{-2\pi ija/M}.
+\]
+With \(\delta=M/\gcd(M,j)\), the identity
+\[
+c_M(j)=\sum_{d\mid\gcd(M,j)}d\,\mu(M/d)=\mu(\delta)\frac{\varphi(M)}{\varphi(\delta)}
+\]
+follows by Möbius inversion. Fourier inversion then gives the primitive-element indicator used in the paper. This is the detailed form of the formula cited in the main proof.
+\subsection{Why the finite checks suffice}
+For each row of the certificate, let \(t\) be a root of \(X^2+X+a_k\) in \(K_0[t]/(X^2+X+a_k)\). The verifier checks:
+\begin{enumerate}
+\item \(m_k\) is irreducible of degree \(k\), so \(K_0=\mathbb F_2[x]/(m_k)\cong\mathbb F_{2^k}\);
+\item \(\operatorname{Tr}_{K_0/\mathbb F_2}(a_k)=1\), so \(X^2+X+a_k\) is irreducible over \(K_0\);
+\item \(t^{2^k}=t+1\), hence \(\operatorname{Tr}_{L/K_0}(t)=1\);
+\item \(t^M=1\) and \(t^{M/p}\ne1\) for every prime \(p\mid M\).
+\end{enumerate}
+The last two conditions imply \(\operatorname{ord}(t)=M=2^{2k}-1\). Thus \(t\) is the required primitive trace-one element.
+\section{Full finite certificate}
+The following table gives the hexadecimal polynomial encodings used by the verifier:
+\[
+m_k=\sum_{i=0}^k m_{k,i}x^i,\qquad a_k=\sum_{i=0}^{k-1}a_{k,i}x^i,
+\]
+with the hexadecimal integer encoding the binary coefficient vector.
+
+\begin{longtable}{rrrr}
+\toprule
+\(k\) & \(m_k\) & \(a_k\) & \(\omega(2^{2k}-1)\)\\
+\midrule
+\endfirsthead
+\toprule
+\(k\) & \(m_k\) & \(a_k\) & \(\omega(2^{2k}-1)\)\\
+\midrule
+\endhead
+1 & \texttt{0x3} & \texttt{0x1} & 1 \\
+2 & \texttt{0x7} & \texttt{0x3} & 2 \\
+3 & \texttt{0xB} & \texttt{0x5} & 2 \\
+4 & \texttt{0x13} & \texttt{0xD} & 3 \\
+5 & \texttt{0x25} & \texttt{0x13} & 3 \\
+6 & \texttt{0x43} & \texttt{0x34} & 4 \\
+7 & \texttt{0x83} & \texttt{0x47} & 3 \\
+8 & \texttt{0x11B} & \texttt{0xC8} & 4 \\
+9 & \texttt{0x203} & \texttt{0x2B} & 4 \\
+10 & \texttt{0x409} & \texttt{0xCB} & 5 \\
+11 & \texttt{0x805} & \texttt{0x525} & 4 \\
+12 & \texttt{0x1009} & \texttt{0x39E} & 6 \\
+13 & \texttt{0x201B} & \texttt{0x1EC4} & 3 \\
+14 & \texttt{0x4021} & \texttt{0x3717} & 6 \\
+15 & \texttt{0x8003} & \texttt{0x62BF} & 6 \\
+16 & \texttt{0x1002B} & \texttt{0x1E6E} & 5 \\
+17 & \texttt{0x20009} & \texttt{0x1155B} & 3 \\
+18 & \texttt{0x40009} & \texttt{0x2EE84} & 8 \\
+19 & \texttt{0x80027} & \texttt{0xB9AF} & 3 \\
+20 & \texttt{0x100009} & \texttt{0x6AEE2} & 7 \\
+21 & \texttt{0x200005} & \texttt{0x15750B} & 6 \\
+22 & \texttt{0x400003} & \texttt{0x24A150} & 7 \\
+23 & \texttt{0x800021} & \texttt{0x6C92F9} & 4 \\
+24 & \texttt{0x100001B} & \texttt{0x389EC4} & 9 \\
+25 & \texttt{0x2000009} & \texttt{0x6801AD} & 7 \\
+26 & \texttt{0x400001B} & \texttt{0x2707D2E} & 7 \\
+27 & \texttt{0x8000027} & \texttt{0x6E9AB1E} & 6 \\
+28 & \texttt{0x10000003} & \texttt{0xFAC7CD2} & 8 \\
+29 & \texttt{0x20000005} & \texttt{0xC69B55E} & 6 \\
+\bottomrule
+\end{longtable}
+
+The exact prime-power factorizations used by the verifier are:
+
+\begin{longtable}{r p{1.2cm} p{11cm}}
+\toprule
+\(k\) & \(\omega(M)\) & factorization of \(M=2^{2k}-1\)\\
+\midrule
+\endfirsthead
+\toprule
+\(k\) & \(\omega(M)\) & factorization of \(M=2^{2k}-1\)\\
+\midrule
+\endhead
+1 & 1 & \(3\) \\
+2 & 2 & \(3\cdot 5\) \\
+3 & 2 & \(3^{2}\cdot 7\) \\
+4 & 3 & \(3\cdot 5\cdot 17\) \\
+5 & 3 & \(3\cdot 11\cdot 31\) \\
+6 & 4 & \(3^{2}\cdot 5\cdot 7\cdot 13\) \\
+7 & 3 & \(3\cdot 43\cdot 127\) \\
+8 & 4 & \(3\cdot 5\cdot 17\cdot 257\) \\
+9 & 4 & \(3^{3}\cdot 7\cdot 19\cdot 73\) \\
+10 & 5 & \(3\cdot 5^{2}\cdot 11\cdot 31\cdot 41\) \\
+11 & 4 & \(3\cdot 23\cdot 89\cdot 683\) \\
+12 & 6 & \(3^{2}\cdot 5\cdot 7\cdot 13\cdot 17\cdot 241\) \\
+13 & 3 & \(3\cdot 2731\cdot 8191\) \\
+14 & 6 & \(3\cdot 5\cdot 29\cdot 43\cdot 113\cdot 127\) \\
+15 & 6 & \(3^{2}\cdot 7\cdot 11\cdot 31\cdot 151\cdot 331\) \\
+16 & 5 & \(3\cdot 5\cdot 17\cdot 257\cdot 65537\) \\
+17 & 3 & \(3\cdot 43691\cdot 131071\) \\
+18 & 8 & \(3^{3}\cdot 5\cdot 7\cdot 13\cdot 19\cdot 37\cdot 73\cdot 109\) \\
+19 & 3 & \(3\cdot 174763\cdot 524287\) \\
+20 & 7 & \(3\cdot 5^{2}\cdot 11\cdot 17\cdot 31\cdot 41\cdot 61681\) \\
+21 & 6 & \(3^{2}\cdot 7^{2}\cdot 43\cdot 127\cdot 337\cdot 5419\) \\
+22 & 7 & \(3\cdot 5\cdot 23\cdot 89\cdot 397\cdot 683\cdot 2113\) \\
+23 & 4 & \(3\cdot 47\cdot 178481\cdot 2796203\) \\
+24 & 9 & \(3^{2}\cdot 5\cdot 7\cdot 13\cdot 17\cdot 97\cdot 241\cdot 257\cdot 673\) \\
+25 & 7 & \(3\cdot 11\cdot 31\cdot 251\cdot 601\cdot 1801\cdot 4051\) \\
+26 & 7 & \(3\cdot 5\cdot 53\cdot 157\cdot 1613\cdot 2731\cdot 8191\) \\
+27 & 6 & \(3^{4}\cdot 7\cdot 19\cdot 73\cdot 87211\cdot 262657\) \\
+28 & 8 & \(3\cdot 5\cdot 17\cdot 29\cdot 43\cdot 113\cdot 127\cdot 15790321\) \\
+29 & 6 & \(3\cdot 59\cdot 233\cdot 1103\cdot 2089\cdot 3033169\) \\
+\bottomrule
+\end{longtable}
+
+\section{Reproducibility}
+The deterministic verifier is \texttt{verify\_k1\_29.py}, stored in the Paper D \texttt{verification/} directory and also included in the submission package. It uses only integer and polynomial arithmetic and requires neither network access nor SymPy. Run:
+\begin{verbatim}
+python verification/verify_k1_29.py
+\end{verbatim}
+The expected final line is:
+\begin{verbatim}
+All certificates verified.
+\end{verbatim}
+The SHA-256 of the verifier is
+\begin{center}
+\texttt{042CE7F74EDFF13ADE5C6285E42CB3D15491FC25C65B99BC670D256047EE8D9F}
+\end{center}
+The verifier was also independently reimplemented during the red-team audit; all \(k=1,\dots,29\) rows passed irreducibility, trace, Frobenius, and exact-order checks.
+\section{Formalization boundary}
+The affine group-generation argument and selected algebraic lemmas are formalized in Lean~4 with mathlib. A conditional Lean file formalizes the field-level Frobenius identities and the order-theoretic \(\tau\)-collapse once an explicit order interface is supplied. The analytic PTE proof and the finite \(k\le29\) certificate in this note are not Lean-formalized. This is a disclosed boundary, not a hidden dependency.
+\section{Historical attribution}
+The theorem is classical. The exact historical theorem used here is the \(n=2,t=1\) case of \cite[Theorem~1, p.~1]{Coh90}. Moreno \cite{Mor} proved the trace-one quadratic case earlier. Cohen \cite[Theorem~1.5, p.~170]{Coh} gives an equivalent square-order formulation. These references are historical attributions only; the proof above is self-contained.
+\begin{thebibliography}{9}
+\bibitem{Coh} S.~D.~Cohen, \emph{The orders of related elements of a finite field}, Ramanujan J.~7 (2003) 169--183, doi:10.1023/A:1026295128600.
+\bibitem{Coh90} S.~D.~Cohen, \emph{Primitive elements and polynomials with arbitrary trace}, Discrete Math.~83 (1990) 1--7.
+\bibitem{Mor} O.~Moreno, \emph{On the existence of a primitive quadratic of trace \(1\) over \(GF(p^m)\)}, J.~Combin.~Theory Ser.~A 51 (1989) 104--110.
+\end{thebibliography}
+\end{document}

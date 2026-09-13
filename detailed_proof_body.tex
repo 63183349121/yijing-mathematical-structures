@@ -1,0 +1,163 @@
+\begin{proof}[Proof of Theorem~\ref{thm:pte}]
+The statement is classical (see \cite{Mor} and
+\cite[Theorem~1, p.~1]{Coh90}; it also follows from the equivalent square-order formulation in
+\cite[Theorem~1.5, p.~170]{Coh}); we give a self-contained proof in the
+even-characteristic case used above. This is a reconstruction of known results (Moreno; Cohen), and no priority is claimed; it is included only to make the paper self-contained.
+Put $q=2^k$, $L=\mathbb{F}_{q^2}$, $K_0=\mathbb{F}_q$, and
+$M=q^2-1=(q-1)(q+1)$. Let
+\[
+E_1=\{x\in L:x^q+x=1\}.
+\]
+The trace map $L\to K_0$ is surjective and $K_0$-linear, so $|E_1|=q$. If
+$x\in E_1$, then $x\notin K_0$ and its minimal polynomial over $K_0$ is
+$X^2+X+xx^q$. Hence it is enough to prove that $E_1$ contains an element of
+order $M$.
+
+Let $\psi$ be the nontrivial additive character of $\mathbb F_2$, and put
+$\psi_L(x)=\psi(\operatorname{Tr}_{L/\mathbb F_2}(x))$ and
+$\psi_{K_0}(a)=\psi(\operatorname{Tr}_{K_0/\mathbb F_2}(a))$. For a multiplicative
+character $\chi$ of $L^*$ define
+\[
+g_L(\chi)=\sum_{x\in L^*}\chi(x)\psi_L(x),\qquad
+g_{K_0}(\chi)=\sum_{a\in K_0^*}\chi(a)\psi_{K_0}(a),\qquad
+S(\chi)=\sum_{x\in E_1}\chi(x).
+\]
+If $\chi$ is nontrivial on $L^*$, then $|g_L(\chi)|=q$; if
+$\chi|_{K_0^*}$ is nontrivial, then $|g_{K_0}(\chi)|=\sqrt q$. Indeed, the usual
+squared-modulus calculation gives
+\[
+|g_L(\chi)|^2
+=\sum_{t\in L^*}\chi(t)^{-1}\sum_{a\in L^*}\psi_L(a(1-t))=q^2,
+\]
+and the same argument in $K_0$ gives $q$.
+
+We first compute $S(\chi)$. For $\alpha\in K_0$ set
+$E_\alpha=\{x\in L:x^q+x=\alpha\}$; these sets partition $L$, and
+$E_\alpha=\alpha E_1$ for $\alpha\ne0$. If $\chi^{q+1}\ne1$, then the
+restriction of $\chi$ to $K_0^*$ is nontrivial; hence
+\[
+g_L(\chi)
+=\sum_{\alpha\in K_0}\psi_{K_0}(\alpha)\sum_{x\in E_\alpha}\chi(x)
+=S(\chi)g_{K_0}(\chi),
+\]
+so $|S(\chi)|=q/\sqrt q=\sqrt q$.
+
+Suppose now that $\chi^{q+1}=1$ and $\chi\ne1$. Then $\chi|_{K_0^*}=1$.
+Let $H=\{h\in L^*:h^{q+1}=1\}$; since $\gcd(q-1,q+1)=1$, the group $L^*$
+is the direct product $K_0^*\times H$. Write $x=ch$ with $c\in K_0^*$ and
+$h\in H$. The condition $x^q+x=1$ becomes
+$c(h+h^{-1})=1$; thus $h\ne1$ and $c=(h+h^{-1})^{-1}$. This gives a
+bijection between $H\setminus\{1\}$ and $E_1$, and therefore
+\[
+S(\chi)=\sum_{h\in H,\ h\ne1}\chi(h)
+=\sum_{h\in H}\chi(h)-1=-1,
+\]
+because $\chi|_H$ is nontrivial.
+
+We shall use the primitive-element indicator
+\begin{equation}\label{eq:pte-indicator}
+\mathbf 1_{\operatorname{ord}(x)=M}
+=\frac{\varphi(M)}M
+\sum_{\delta\mid M}\frac{\mu(\delta)}{\varphi(\delta)}
+\sum_{\operatorname{ord}(\chi)=\delta}\chi(x).
+\end{equation}
+To see this, fix a generator $g$ of $L^*$ and write $x=g^a$. The left side
+is the indicator of $\gcd(a,M)=1$. Its Fourier coefficient at a character
+of order $\delta$ is the Ramanujan sum
+$c_M(j)=\mu(\delta)\varphi(M)/\varphi(\delta)$; Fourier inversion gives
+\eqref{eq:pte-indicator}. (The displayed identity for $c_M(j)$ follows by
+M\"obius inversion.)
+
+Assume for contradiction that $E_1$ has no element of order $M$. Summing
+\eqref{eq:pte-indicator} over $E_1$ gives
+\[
+0=\frac{\varphi(M)}M
+\sum_{\delta\mid M}\frac{\mu(\delta)}{\varphi(\delta)}S_\delta,
+\qquad
+S_\delta=\sum_{\operatorname{ord}(\chi)=\delta}S(\chi).
+\]
+Let $s=\omega(M)$ and $s'=\omega(q+1)$ be the numbers of distinct prime
+divisors. The $\delta=1$ term is $q$. If $\delta\mid q+1$ and $\delta>1$,
+then each character of order $\delta$ satisfies $\chi^{q+1}=1$, so the
+corresponding contribution is $-\mu(\delta)$; summing over
+$\delta\mid q+1$, $\delta>1$, gives $1$. For the remaining squarefree
+divisors $\delta\nmid q+1$, the character sums are bounded by $\sqrt q$,
+and their number is at most $2^s-2^{s'}$. Consequently,
+\[
+q+1\le(2^s-2^{s'})\sqrt q. \tag{A.2}
+\]
+Since $q+1>\sqrt q$, this implies
+\[
+2^s>2^{k/2}, \qquad\text{so}\qquad s>k/2.
+\]
+In particular $k<2s$. Let $p_1<p_2<\cdots$ be the primes and
+$P_s=p_1\cdots p_s$. Since $M=2^{2k}-1$ has exactly $s$ distinct prime
+divisors, $M\ge P_s$. We have
+\[
+P_{16}=32589158477190044730>2^{64}.
+\]
+For $n\ge16$, the ratio
+\[
+\frac{P_{n+1}/2^{4(n+1)}}{P_n/2^{4n}}
+=\frac{p_{n+1}}{16}
+\]
+is greater than $1$, because $p_{n+1}\ge59$. Hence $P_s>2^{4s}$ for
+every $s\ge16$. But $k<2s$ gives
+\[
+M=2^{2k}-1<2^{2k}<2^{4s},
+\]
+so $s\ge16$ is impossible. Thus $s\le15$ and $k<2s\le30$, i.e.
+$k\le29$.
+
+It remains to cover this finite range. In the table below, $m_k$ is an
+irreducible polynomial of degree $k$ over $\mathbb F_2$, encoded by the
+binary coefficient vector of the displayed hexadecimal integer; thus
+$K_0=\mathbb F_2[x]/(m_k)$. The element $a_k\in K_0$ is encoded similarly.
+For each row let $t$ be a root of $X^2+X+a_k$ in
+$K_0[t]/(X^2+X+a_k)$. The deterministic verifier checks that $m_k$ is
+irreducible, that $\operatorname{Tr}_{K_0/\mathbb F_2}(a_k)=1$, that
+$t^{2^k}=t+1$, and that $t^M=1$ while $t^{M/p}\ne1$ for every prime
+$p\mid M$. The last two checks show that $\operatorname{ord}(t)=M$; the
+third shows that $\operatorname{Tr}_{L/K_0}(t)=1$. A verifier for the table, \texttt{verify\_k1\_29.py},
+is included as an ancillary file; its SHA-256 hash is
+\texttt{042CE7F74EDFF13ADE5C6285E42CB3D15491FC25}\allowbreak
+\texttt{C65B99BC670D256047EE8D9F}.
+\begin{center}
+\small
+\begin{tabular}{rrr}
+$k$ & $m_k$ & $a_k$\\
+\hline
+1 & \texttt{0x3} & \texttt{0x1}\\
+2 & \texttt{0x7} & \texttt{0x3}\\
+3 & \texttt{0xb} & \texttt{0x5}\\
+4 & \texttt{0x13} & \texttt{0xd}\\
+5 & \texttt{0x25} & \texttt{0x13}\\
+6 & \texttt{0x43} & \texttt{0x34}\\
+7 & \texttt{0x83} & \texttt{0x47}\\
+8 & \texttt{0x11b} & \texttt{0xc8}\\
+9 & \texttt{0x203} & \texttt{0x2b}\\
+10 & \texttt{0x409} & \texttt{0xcb}\\
+11 & \texttt{0x805} & \texttt{0x525}\\
+12 & \texttt{0x1009} & \texttt{0x39e}\\
+13 & \texttt{0x201b} & \texttt{0x1ec4}\\
+14 & \texttt{0x4021} & \texttt{0x3717}\\
+15 & \texttt{0x8003} & \texttt{0x62bf}\\
+16 & \texttt{0x1002b} & \texttt{0x1e6e}\\
+17 & \texttt{0x20009} & \texttt{0x1155b}\\
+18 & \texttt{0x40009} & \texttt{0x2ee84}\\
+19 & \texttt{0x80027} & \texttt{0xb9af}\\
+20 & \texttt{0x100009} & \texttt{0x6aee2}\\
+21 & \texttt{0x200005} & \texttt{0x15750b}\\
+22 & \texttt{0x400003} & \texttt{0x24a150}\\
+23 & \texttt{0x800021} & \texttt{0x6c92f9}\\
+24 & \texttt{0x100001b} & \texttt{0x389ec4}\\
+25 & \texttt{0x2000009} & \texttt{0x6801ad}\\
+26 & \texttt{0x400001b} & \texttt{0x2707d2e}\\
+27 & \texttt{0x8000027} & \texttt{0x6e9ab1e}\\
+28 & \texttt{0x10000003} & \texttt{0xfac7cd2}\\
+29 & \texttt{0x20000005} & \texttt{0xc69b55e}\\
+\end{tabular}
+\end{center}
+The table therefore supplies the required element for every $k\le29$.
+Combining this with the contradiction for $k\ge30$ proves the theorem.
+\end{proof}
