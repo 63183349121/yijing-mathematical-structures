@@ -19,6 +19,7 @@ No new priority is claimed.
 Paper F preprint
 Four-zero tail-palindromic primitive polynomials: coefficient geometry, Dickson reduction, and computational evidence.
 This preprint studies four-zero tail-palindromic candidates over F_2, their self-paired coefficient geometry, the uniform Dickson/tau reduction, finite-pair association statistics for n=2p, and computational evidence.
+DOI: https://doi.org/10.5281/zenodo.22745836
 Repository contents
 ● PaperA_singer_TDK.pdf - main preprint.
 ● PaperA_singer_TDK.tex - LaTeX source.
@@ -43,3 +44,4 @@ Contact
 Baohua Li
 Independent Researcher
 Email: 707952331@qq.com
+

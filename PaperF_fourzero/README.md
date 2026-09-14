@@ -4,6 +4,8 @@ Title: Four-zero tail-palindromic primitive polynomials: coefficient geometry, D
 
 Author: Baohua Li
 
+DOI: [10.5281/zenodo.22745836](https://doi.org/10.5281/zenodo.22745836)
+
 Status: structural/computational draft.
 
 Main content:
