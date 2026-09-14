@@ -10,11 +10,11 @@ The triple has cycle types D = 1+63 and K = 1+7*9 , satisfies (id xor K)^(-1) = 
 <T,D> = AGL(1,64)
 of order 4032 = 64*63 . The paper also gives a uniform 2k -bit generalization and a self-contained proof of the required even-
 characteristic primitive trace-one input.
-The theorem itself is classical. The historical attribution is:
+The existence input is classical and fully attributed to:
 ● Cohen (1990), Theorem 1, p. 1;
 ● Moreno (1989);
 ● an equivalent square-order formulation in Cohen (2003), Theorem 1.5, p. 170.
-No new priority is claimed.
+The contribution of this note is constructive: an explicit affine Singer realization on F_2^6, a unified (T,D,K) triple with F^3=id, and a uniform 2k-bit coordinate presentation. No priority is claimed for the classical existence theorem itself.
 
 Paper F preprint
 Four-zero tail-palindromic primitive polynomials: coefficient geometry, Dickson reduction, and computational evidence.
