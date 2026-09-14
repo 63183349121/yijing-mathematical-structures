@@ -1,0 +1,939 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{problem}[theorem]{Problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Four-zero tail-palindromic primitive polynomials: coefficient geometry, Dickson reduction, and computational evidence}
+\author{Baohua Li}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let \(n=2k\). A polynomial \(f(x)=x^n+c_{n-1}x^{n-1}+\cdots+c_0\) over \(\mathbb F_2\) is called a \emph{four-zero tail-palindromic candidate} if the tail vector \((c_{n-1},\ldots,c_0)\) is a palindrome with exactly four zero entries. We establish three layers of structure for these candidates. First, we prove the self-paired identity \(H_{\mathrm{even}}=Q_k\oplus V_k\), determine the number of occupied \(K\)-cosets, construct a half-space functional, and give a complete Fourier description of the four-zero coset multiplicity. Second, we prove a uniform Dickson-factor reduction valid for every even degree and specialize it to the \(n=2p\) subfamily. Third, we report complete counts up to \(n=200\), first solutions up to \(n=300\), and a negative finite-pair association signal in the computed range for the \(n=2p\) family. Auxiliary combinatorial and arithmetic descriptions are collected in an appendix. The main conjecture remains open.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Let $\mathbb F_2$ be the field with two elements. For an even integer $n=2k$, write
+\[
+f(x)=x^n+c_{n-1}x^{n-1}+\cdots+c_1x+c_0,\qquad c_i\in\mathbb F_2.
+\]
+The \emph{tail vector} is $(c_{n-1},\ldots,c_0)$. We say that $f$ is a \emph{four-zero tail-palindromic candidate} if
+\[
+(c_{n-1},\ldots,c_0)=(c_0,\ldots,c_{n-1})
+\]
+and the tail vector has exactly four zero entries. Equivalently, for some
+\[
+1\le i<j\le k-1,
+\]
+one has
+\begin{equation}\label{eq:candidate}
+f_{n,i,j}(x)
+=
+S_n(x)+x^i+x^{n-1-i}+x^j+x^{n-1-j},
+\qquad
+S_n(x)=1+x+\cdots+x^n.
+\end{equation}
+
+\begin{remark}\label{rem:selfreciprocal}
+Set \(g(x)=xf(x)+1\). The tail-palindromic condition for \(f\) is equivalent to \(g\) being self-reciprocal of degree \(n+1\):
+\[
+x^{n+1}g(1/x)=g(x).
+\]
+Thus the coefficient pattern studied here is a reversal-symmetric slice of polynomial space. However, primitivity of \(f\) does not imply irreducibility or primitivity of \(g\), so we use this identification only as a structural and literature bridge, not as a reduction.
+\end{remark}
+
+\begin{conjecture}[$C_4$]\label{conj:C4}
+For every even $n\ge 6$, there exists a primitive polynomial over $\mathbb F_2$ of the form \eqref{eq:candidate}.
+\end{conjecture}
+
+Conjecture \ref{conj:C4} lies in the general area of primitive polynomials with prescribed coefficients. Hansen--Mullen type results prescribe one coefficient; results of Cohen and Han prescribe a small number of coefficients; Fan's theorem prescribes the last half of the coefficients when $q$ is sufficiently large \cite{Coh06,Han04,Fan09,Gar11,Gao23}. These results do not directly cover the fixed-field, growing-degree situation with four prescribed zero coefficients and palindromic symmetry. The purpose of this paper is to record and organize the structural reductions that the problem admits, together with computational evidence. Standard finite-field background may be found in \cite{LN}; the existence of primitive elements with prescribed trace in the even-characteristic setting is classical \cite{Coh90,Mor,Coh03}; a related cycle-structure construction appears in \cite{GPT}.
+
+The main structural results are Theorems \ref{thm:Heven}, \ref{thm:Dk}, and \ref{thm:halfspace}, Proposition \ref{prop:fourier}, and the uniform Dickson-factor reduction of Section \ref{sec:uniform}; auxiliary combinatorial and arithmetic descriptions are given in Appendix \ref{app:arith}.
+
+\section{Preliminaries}
+\label{sec:prelim}
+
+Let $V=\mathbb F_2^{2k}$. We write a vector $W\in V$ in two halves
+\[
+W=AB,\qquad A,B\in\mathbb F_2^k.
+\]
+Let $\operatorname{rev}:\mathbb F_2^k\to\mathbb F_2^k$ denote reversal of coordinates. Define
+\[
+S(AB)=BA,\qquad R(AB)=\operatorname{rev}(B)\operatorname{rev}(A),\qquad P=SR.
+\]
+The common fixed set of $S,R,P$ will be denoted by $K$; explicitly,
+\[
+K=\{CC:C=\operatorname{rev}(C)\}.
+\]
+Let
+\[
+f(C)=C+\operatorname{rev}(C).
+\]
+Let \(J=(1,\ldots,1)\in\mathbb F_2^k\), and let \(\langle\cdot,\cdot\rangle\) denote the standard dot product on \(\mathbb F_2^k\).
+The self-paired set is
+\[
+H=\{W=AB\in V: f(A)=f(B)\}.
+\]
+
+We use zero-based indices for the standard unit vectors: $e_r=(0,\ldots,0,1,0,\ldots,0)$ with the nonzero entry in position $r$, $0\le r\le k-1$.
+
+The following elementary facts are used repeatedly.
+
+\begin{lemma}\label{lem:K}
+The set $K$ is a linear subspace of $V$ of dimension $\lceil k/2\rceil$; in particular
+\[
+|K|=2^{\lceil k/2\rceil}.
+\]
+Moreover $K\subseteq H$.
+\end{lemma}
+
+\begin{proof}
+A vector $C=(c_0,\ldots,c_{k-1})$ is fixed by reversal precisely when $c_i=c_{k-1-i}$. Thus the free coordinates are the first $\lceil k/2\rceil$ entries. For $C=\operatorname{rev}(C)$, the word $CC$ satisfies $f(C)=C+\operatorname{rev}(C)=0$, so its two halves have the same image under $f$; hence $CC\in H$.
+\end{proof}
+
+\begin{lemma}\label{lem:H}
+The set $H$ is a linear subspace of dimension $k+\lceil k/2\rceil$. Hence
+\[
+|H|=2^{k+\lceil k/2\rceil}.
+\]
+\end{lemma}
+
+\begin{proof}
+The condition $f(A)=f(B)$ is linear. The map $(A,B)\mapsto f(A)+f(B)$ has image $\operatorname{im} f$, of dimension $\lfloor k/2\rfloor$. Therefore
+\[
+\dim H=2k-\lfloor k/2\rfloor=k+\lceil k/2\rceil.
+\]
+\end{proof}
+
+\section{The even self-paired target}
+\label{sec:Heven}
+
+Let
+\[
+Q_k=\{AA:A\in\mathbb F_2^k\},\qquad
+V_k=\operatorname{im} f=\{C+\operatorname{rev}(C):C\in\mathbb F_2^k\}.
+\]
+We identify $V_k$ with the subspace $\{(v,0):v\in V_k\}\subseteq V$.
+
+\begin{theorem}\label{thm:Heven}
+One has
+\[
+\boxed{\,H_{\mathrm{even}}=Q_k\oplus V_k\,}
+\]
+where $H_{\mathrm{even}}$ is the subset of $H$ consisting of vectors of even Hamming weight. In particular
+\[
+|H_{\mathrm{even}}|
+=
+|Q_k|\,|V_k|
+=
+2^{k+\lfloor k/2\rfloor}
+=
+2^{2k-\lceil k/2\rceil}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let $W=(C+v,C)$ with $C\in\mathbb F_2^k$ and $v\in V_k$. Since $V_k=\operatorname{im} f\subseteq\ker f$, we have $f(v)=0$, hence
+\[
+f(C+v)+f(C)=f(v)=0.
+\]
+Thus $W\in H$. Also
+\[
+\operatorname{wt}(C+v)+\operatorname{wt}(C)\equiv \operatorname{wt}(v)\equiv 0\pmod 2,
+\]
+because $v=f(D)=D+\operatorname{rev}(D)$ has even weight. Therefore $Q_k\oplus V_k\subseteq H_{\mathrm{even}}$.
+
+It remains to compare sizes. Let $W=AB\in H$ and put $z=A+B$. Then $z\in\ker f$. The parity of $\operatorname{wt}(W)$ equals the parity of $\operatorname{wt}(z)$, which is the value of the linear functional $\ell(z)=\langle J,z\rangle$ on $\ker f$.
+
+If $k$ is even, then $\dim\ker f=\dim\operatorname{im} f=k/2$. Moreover every vector in $\operatorname{im} f$ has even weight, so $\operatorname{im} f\subseteq \ker \ell$. Since the dimensions are equal, $\ker f=\operatorname{im} f$ and $\ell$ vanishes on $\ker f$. Hence all elements of $H$ have even weight.
+
+If $k$ is odd, then $\ell$ is nonzero on $\ker f$, because $J\in\ker f$ and $\ell(J)=\operatorname{wt}(J)=k\equiv1\pmod2$. Hence exactly half of the elements of $\ker f$ lie in $\ker\ell$. The map $W=AB\mapsto A+B$ from $H$ to $\ker f$ is surjective: for any $z\in\ker f$, the word $z0$ lies in $H$ and maps to $z$. Since $H_{\mathrm{even}}$ is the preimage of $\ker\ell$ under this map, it is a hyperplane in $H$; consequently $|H_{\mathrm{even}}|=\frac12|H|$.
+
+Combining these cases with Lemma~\ref{lem:H} gives
+\[
+|H_{\mathrm{even}}|=
+\begin{cases}
+2^{k+k/2},& k\text{ even},\\[2mm]
+\frac12 2^{k+(k+1)/2},& k\text{ odd},
+\end{cases}
+\]
+which in both cases equals $2^{k+\lfloor k/2\rfloor}=2^{2k-\lceil k/2\rceil}$.
+
+Finally, $|Q_k|=2^k$ and $|V_k|=2^{\lfloor k/2\rfloor}$, and the sum is direct because the two halves of an element of $Q_k$ are equal, while a nonzero element of $V_k$ (identified with $\{(v,0)\}$) has second half $0$. Thus
+\[
+|Q_k\oplus V_k|=2^{k+\lfloor k/2\rfloor}=|H_{\mathrm{even}}|.
+\]
+The already established inclusion $Q_k\oplus V_k\subseteq H_{\mathrm{even}}$ is therefore an equality.
+\end{proof}
+
+\begin{corollary}\label{cor:fourzerotarget}
+Every four-zero tail-palindromic candidate belongs to $H_{\mathrm{even}}$.
+\end{corollary}
+
+\begin{proof}
+The tail vector of a four-zero candidate is a palindrome and has exactly four zero entries, hence its Hamming weight is even. A palindrome satisfies $B=\operatorname{rev}(A)$, so $f(A)=A+B=f(B)$; hence it lies in $H$.
+\end{proof}
+
+\begin{remark}
+The four-zero candidates do not exhaust $H_{\mathrm{even}}$. They form a thin, polynomially-sized subfamily, whereas $H_{\mathrm{even}}$ is exponentially large.
+\end{remark}
+
+\section{The \texorpdfstring{$K$}{K}-coset invariant and its count}
+\label{sec:Kcoset}
+
+Write
+\[
+\mathcal G=H_{\mathrm{even}}/K
+\]
+for the quotient of the self-paired even-weight target by the common fixed-point kernel.
+
+For a four-zero candidate, write $A=J+e_i+e_j$, where $J=(1,\ldots,1)$ and $1\le i<j\le k-1$. The candidate is $W=A\operatorname{rev}(A)$. Its $K$-coset is determined by
+\[
+g(A)=A+\operatorname{rev}(A)\in V_k.
+\]
+Since $J$ is palindromic,
+\[
+g(A)=g(e_i+e_j).
+\]
+Let $D(k)$ be the number of distinct $K$-cosets occupied by four-zero candidates.
+
+\begin{theorem}\label{thm:Dk}
+For $k\ge4$,
+\[
+\boxed{
+D(k)=1+\binom{\lfloor (k+1)/2\rfloor}{2}.
+}
+\]
+For $k=3$, $D(3)=1$. Consequently, for $k\ge4$,
+\[
+D(k+2)-D(k)=\left\lfloor\frac{k+1}{2}\right\rfloor.
+\]
+\end{theorem}
+
+\begin{proof}
+Write \(g(e_i+e_j)=v_i+v_j\), where
+\[
+v_r=e_r+e_{k-1-r}.
+\]
+If \(k\) is odd and \(r=(k-1)/2\), then \(v_r=0\); otherwise \(v_r\) is the pair-vector of the symmetric pair \(\{r,k-1-r\}\). Thus, after identifying \(v_r\) with \(v_{k-1-r}\), every possible value of \(g(e_i+e_j)\) is a sum of at most two distinct pair-vectors. If $k=2m$ is even, there are $m$ pair-vectors and no fixed coordinate. The possible values are $0$ and sums of two distinct pair-vectors, whence
+\[
+D(2m)=1+\binom m2.
+\]
+If $k=2m+1$ is odd, there are $m$ nonzero pair-vectors and one fixed middle coordinate, giving $v_{(k-1)/2}=0$. The possible values are $0$, a single nonzero pair-vector, and a sum of two distinct nonzero pair-vectors; hence
+\[
+D(2m+1)=1+m+\binom m2=1+\binom{m+1}{2}.
+\]
+The two formulas combine into the stated expression. The case $k=3$ is exceptional because the unique candidate gives $g(e_1+e_2)\neq0$, so the value $0$ is not attained and $D(3)=1$ while the general formula would give $2$. The increment formula follows by subtraction.
+\end{proof}
+
+For \(1\le i\le k-1\), set
+\[
+W_i=(J+e_i)(J+e_{k-1-i}),\qquad u_i=\overline W_i\in\mathcal G.
+\]
+
+\begin{lemma}\label{lem:ui-multiset}
+With the notation just defined, write \(r=\lfloor k/2\rfloor\). As a multiset,
+\[
+\{u_1,\dots,u_{k-1}\}
+=
+\begin{cases}
+\{z_1,z_1,\dots,z_{r-1},z_{r-1},z_r\}, & k=2r,\\[2mm]
+\{z_1,z_1,\dots,z_{r-1},z_{r-1},0,z_r\}, & k=2r+1,
+\end{cases}
+\]
+where \(z_1,\dots,z_r\) are linearly independent in \(\mathcal G\).
+\end{lemma}
+
+\begin{proof}
+First note that each \(W_i\) lies in \(H_{\mathrm{even}}\): its two halves are interchanged by reversal, so their \(f\)-images agree, and its Hamming weight is \(2(k-1)\). Now for \(1\le i\le r-1\), the two elements \(W_i\) and \(W_{k-1-i}\) differ by
+\[
+(e_i+e_{k-1-i},\,e_i+e_{k-1-i}),
+\]
+whose common half is palindromic. Hence their difference lies in \(K\), so \(u_i=u_{k-1-i}\).
+
+If \(k=2r+1\), then
+\[
+W_r=(J+e_r)(J+e_r)\in K,
+\]
+so \(u_r=0\).
+
+It remains to see that the remaining elements are independent. Under the decomposition \(H_{\mathrm{even}}=Q_k\oplus V_k\), the image of \(u_i\) in the quotient \((Q_k/K)\oplus V_k\) has \(V_k\)-component \(e_i+e_{k-1-i}\). For \(i=1,\dots,r-1\), these are the pair-vectors \(e_i+e_{k-1-i}\), and the remaining element \(u_{k-1}\) has \(V_k\)-component \(e_0+e_{k-1}\). These \(r\) pair-vectors form a basis of \(V_k\), so the corresponding elements of \(\mathcal G\) are linearly independent.
+\end{proof}
+
+\begin{proposition}[Fourier spectrum]\label{prop:fourier}
+Recall that \(\mathcal G=H_{\mathrm{even}}/K\). For \(1\le i\le k-1\), recall that
+\[
+W_i=(J+e_i)(J+e_{k-1-i}),\qquad u_i=\bar W_i\in\mathcal G.
+\]
+Then \(W_i\in H_{\mathrm{even}}\), and for every \(1\le i<j\le k-1\),
+\begin{equation}\label{eq:coset-additive}
+\bar W_{i,j}=u_i+u_j.
+\end{equation}
+Consequently, for every character \(\chi\in\widehat{\mathcal G}\),
+\begin{equation}\label{eq:fourier-coeff}
+\widehat\mu(\chi)
+=
+\frac12\left(S_\chi^2-(k-1)\right),
+\qquad
+S_\chi=\sum_{i=1}^{k-1}\chi(u_i).
+\end{equation}
+Fourier inversion therefore gives
+\begin{equation}\label{eq:fourier-inversion}
+\mu(w)
+=
+\frac1{|\mathcal G|}
+\sum_{\chi\in\widehat{\mathcal G}}
+\frac{S_\chi^2-(k-1)}{2}\,\chi(w).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For \(A_i=J+e_i\) one has \(\operatorname{rev}(A_i)=J+e_{k-1-i}\), so \(W_i=A_i\operatorname{rev}(A_i)\in H\). Its Hamming weight is \(2(k-1)\), hence even, and thus \(W_i\in H_{\mathrm{even}}\).
+
+For \(1\le i<j\le k-1\), the four-zero candidate has the form
+\[
+W_{i,j}
+=(J+e_i+e_j)(J+e_{k-1-i}+e_{k-1-j}).
+\]
+Therefore
+\[
+W_{i,j}+W_i+W_j
+=
+(J,J).
+\]
+Since \(J\) is palindromic, \((J,J)\in K\). Passing to \(H_{\mathrm{even}}/K\) gives \eqref{eq:coset-additive}.
+
+Now let \(\chi\in\widehat{\mathcal G}\). Using additivity of \(\chi\),
+\[
+\widehat\mu(\chi)
+=
+\sum_{i<j}\overline{\chi(u_i+u_j)}
+=
+\sum_{i<j}\chi(u_i)\chi(u_j),
+\]
+because \(\chi(u_i)=\pm1\). Hence
+\[
+\widehat\mu(\chi)
+=
+\frac12\left(\left(\sum_{i=1}^{k-1}\chi(u_i)\right)^2-(k-1)\right),
+\]
+which is \eqref{eq:fourier-coeff}. Equation \eqref{eq:fourier-inversion} is the Fourier inversion formula on the finite abelian group \(\mathcal G\).
+\end{proof}
+
+\begin{corollary}[Exact multiplicity distribution]\label{cor:exact-multiplicity}
+Fix the independent elements \(z_1,\dots,z_r\) from Lemma~\ref{lem:ui-multiset}. For
+\[
+w=\sum_{j=1}^r\epsilon_jz_j,\qquad \epsilon=(\epsilon_1,\dots,\epsilon_r)\in\mathbb F_2^r,
+\]
+the multiplicity \(\mu(w)\) is as follows.
+
+If \(k=2r\), then
+\[
+\mu(w)=
+\begin{cases}
+r-1, & \epsilon=0,\\[1mm]
+2, & \epsilon=\varepsilon^{(j)}+\varepsilon^{(r)},\quad 1\le j<r,\\[1mm]
+4, & \epsilon=\varepsilon^{(j)}+\varepsilon^{(\ell)},\quad 1\le j<\ell<r,\\[1mm]
+0, & \text{otherwise}.
+\end{cases}
+\]
+
+If \(k=2r+1\), then
+\[
+\mu(w)=
+\begin{cases}
+r-1, & \epsilon=0,\\[1mm]
+2, & \epsilon=\varepsilon^{(j)},\quad 1\le j<r,\\[1mm]
+1, & \epsilon=\varepsilon^{(r)},\\[1mm]
+2, & \epsilon=\varepsilon^{(j)}+\varepsilon^{(r)},\quad 1\le j<r,\\[1mm]
+4, & \epsilon=\varepsilon^{(j)}+\varepsilon^{(\ell)},\quad 1\le j<\ell<r,\\[1mm]
+0, & \text{otherwise}.
+\end{cases}
+\]
+\end{corollary}
+
+\begin{proof}
+By Lemma~\ref{lem:ui-multiset}, the multiset of \(u\)'s consists of two copies of each \(z_j\) for \(1\le j<r\), together with the additional element \(z_r\). If \(k\) is odd, there is also one zero element. A pair \(u_i+u_j\) can therefore have only the following forms: two copies of the same \(z_j\) give \(0\); one copy of \(z_j\) paired with \(z_r\) gives \(z_j+z_r\); one copy of \(z_j\) paired with one copy of \(z_\ell\) gives \(z_j+z_\ell\); and, when \(k\) is odd, the zero element paired with \(z_j\) gives \(z_j\). Counting the available copies gives the stated multiplicities.
+\end{proof}
+
+\begin{corollary}[All moments]\label{cor:all-moments}
+For every integer \(t\ge1\),
+\[
+M_t:=\sum_{w\in\mathcal G}\mu(w)^t
+=
+\begin{cases}
+(r-1)^t+2^t(r-1)+4^t\binom{r-1}{2}, & k=2r,\\[2mm]
+(r-1)^t+2^t(2r-2)+1+4^t\binom{r-1}{2}, & k=2r+1.
+\end{cases}
+\]
+In particular, the case \(t=2\) gives the second moment below.
+\end{corollary}
+
+\begin{proof}
+This follows immediately from the exact multiplicity distribution in Corollary~\ref{cor:exact-multiplicity}.
+\end{proof}
+
+\begin{corollary}[Closed-form second moment]\label{cor:fourier-second-moment}
+Write \(k=2r\) or \(k=2r+1\), and put
+\[
+C_2=\sum_{w\in\mathcal G}\mu(w)^2.
+\]
+Then
+\begin{equation}\label{eq:C2}
+C_2=
+\begin{cases}
+(r-1)(9r-13), & k=2r,\\[2mm]
+9r^2-18r+10, & k=2r+1.
+\end{cases}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Apply the distribution in Corollary~\ref{cor:exact-multiplicity}. If \(k=2r\), then
+\[
+C_2=(r-1)^2+4(r-1)+16\binom{r-1}{2}
+=(r-1)(9r-13).
+\]
+If \(k=2r+1\), then
+\[
+C_2=(r-1)^2+8(r-1)+1+16\binom{r-1}{2}
+=9r^2-18r+10.
+\]
+\end{proof}
+
+
+
+\begin{remark}[Ambient check-class quotient]\label{rem:ambient-quotient}
+Since \(K\subseteq H_{\mathrm{even}}\), the quotient studied above is a subgroup of the ambient quotient \(\mathbb F_2^{2k}/K\). Their dimensions are
+\[
+\dim_{\mathbb F_2}\frac{\mathbb F_2^{2k}}{K}
+=
+2k-\left\lceil\frac{k}{2}\right\rceil,
+\qquad
+\dim_{\mathbb F_2}\frac{H_{\mathrm{even}}}{K}
+=
+2\left\lfloor\frac{k}{2}\right\rfloor.
+\]
+Consequently,
+\[
+\left[\frac{\mathbb F_2^{2k}}{K}:\frac{H_{\mathrm{even}}}{K}\right]
+=
+2^{\lceil k/2\rceil}.
+\]
+For \(k=3\), this is the familiar \(16\)-class ambient quotient containing the four-element subgroup \(H_{\mathrm{even}}/K\).
+\end{remark}
+
+\section{A half-space functional}
+\label{sec:halfspace}
+
+Let $W=AB\in H$. Define
+\[
+s(W)=\text{the first coordinate of }\operatorname{rev}(A)+B\in\mathbb F_2^k.
+\]
+
+\begin{theorem}\label{thm:halfspace}
+The map $s$ is well defined on $H/K$, is a nonzero linear functional on $H/K$, and satisfies
+\[
+s(W)=0
+\]
+for every four-zero candidate. For the generalized alternating direction $E=0101\cdots 01$ (a full word of length $2k$), one has $s(E)=1$.
+\end{theorem}
+
+\begin{proof}
+If $W$ is replaced by $W+CC$ with $C=\operatorname{rev}(C)$, then $A$ and $B$ are each replaced by $A+C$ and $B+C$. Since $\operatorname{rev}(C)=C$, the expression $\operatorname{rev}(A)+B$ is unchanged. This proves well-definedness. For a four-zero candidate one has $B=\operatorname{rev}(A)$, so $\operatorname{rev}(A)+B=0$ and $s(W)=0$. For the alternation vector $E$, the first coordinate of $\operatorname{rev}(E_A)+E_B$ is $1$, so $s(E)=1$.
+\end{proof}
+
+\begin{corollary}
+All four-zero candidates lie in the half-space $s=0$, while the generalized alternating direction lies in the opposite half-space $s=1$.
+\end{corollary}
+
+\section{Uniform Dickson reduction for every even degree}
+\label{sec:uniform}
+
+We first record the arithmetic reduction in its natural generality. The prime-degree specialization is treated separately in Section~\ref{sec:2p}.
+
+Let
+\[
+n=2k,\qquad q=2^k,\qquad
+\mathbb K=\mathbb F_q,\qquad \mathbb L=\mathbb F_{q^2}.
+\]
+Since \(q^2-1=(q-1)(q+1)\) and \(\gcd(q-1,q+1)=1\), there is a direct decomposition
+\[
+\mathbb L^*\cong \mathbb K^*\times \mathbb H_B,
+\qquad
+\mathbb H_B=\{x\in\mathbb L^*:x^{q+1}=1\}.
+\]
+
+We use the Dickson polynomials \(D_r(t)\), defined by
+\[
+D_0(t)=0,\qquad D_1(t)=t,\qquad
+D_{r+1}(t)=tD_r(t)+D_{r-1}(t),
+\]
+so that
+\[
+D_r(u+u^{-1})=u^r+u^{-r}.
+\]
+
+\begin{proposition}[Uniform \(\tau\)-reduction]\label{prop:uniform-tau}
+Let \(\beta\in\mathbb L^*\) be primitive and write uniquely
+\[
+\beta=\nu\gamma,\qquad \nu\in\mathbb K^*,\quad \gamma\in\mathbb H_B.
+\]
+Then
+\[
+\operatorname{ord}(\nu)=q-1,\qquad \operatorname{ord}(\gamma)=q+1.
+\]
+Put \(\tau=\gamma+\gamma^{-1}\in\mathbb K\). Then
+\[
+D_q(\tau)=\tau,\qquad D_{q+1}(\tau)=0,
+\]
+and the minimal polynomial of \(\beta\) over \(\mathbb F_2\) is
+\begin{equation}\label{eq:uniform-factorization}
+F_{\gamma,\nu}(x)
+=
+\prod_{i=0}^{k-1}
+\left(x^2+\nu^{2^i}D_{2^i}(\tau)x+\nu^{2^{i+1}}\right).
+\end{equation}
+Moreover, if \(s_r\) denotes the \(r\)-th power sum of the roots of \(F_{\gamma,\nu}\), then
+\begin{equation}\label{eq:uniform-powersum}
+s_r
+=
+\operatorname{Tr}_{\mathbb K/\mathbb F_2}
+\left(\nu^rD_r(\tau)\right).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The order statements follow from the direct decomposition and the fact that \(\beta\) generates \(\mathbb L^*\). The Dickson identities are
+\[
+D_q(\gamma+\gamma^{-1})
+=\gamma^q+\gamma^{-q}
+=\gamma^{-1}+\gamma
+=\tau,
+\]
+and
+\[
+D_{q+1}(\gamma+\gamma^{-1})
+=\gamma^{q+1}+\gamma^{-(q+1)}
+=1+1=0,
+\]
+where \(\gamma^q=\gamma^{-1}\).
+
+The Frobenius conjugates of \(\beta\) are \(\nu^{2^i}\gamma^{2^i}\), \(0\le i\le 2k-1\). Since \(\nu^q=\nu\) and \(\gamma^q=\gamma^{-1}\), these roots pair as
+\[
+\nu^{2^i}\gamma^{2^i},\qquad \nu^{2^i}\gamma^{-2^i},
+\qquad 0\le i\le k-1.
+\]
+Their sum is \(\nu^{2^i}D_{2^i}(\tau)\) and their product is \(\nu^{2^{i+1}}\), giving \eqref{eq:uniform-factorization}. The power-sum identity \eqref{eq:uniform-powersum} follows by summing the same paired roots and applying the definition of \(D_r\).
+\end{proof}
+
+\begin{corollary}\label{cor:uniform-system}
+For every even \(n=2k\), the four-zero condition is equivalent to the system
+\begin{equation}\label{eq:uniform-system}
+\begin{cases}
+c_r(\nu,\tau)=0, & r\in\{i,j,n-1-i,n-1-j\},\\
+c_r(\nu,\tau)=1, & r\notin\{i,j,n-1-i,n-1-j\},\\
+\nu\in\mathbb K^*,& \operatorname{ord}(\nu)=q-1,\\
+\gamma\in \mathbb H_B,& \operatorname{ord}(\gamma)=q+1,\quad \tau=\gamma+\gamma^{-1},
+\end{cases}
+\end{equation}
+where the \(c_r(\nu,\tau)\) are the coefficients of \(F_{\gamma,\nu}\).
+\end{corollary}
+
+For fixed \(i<j\), write
+\[
+c_r(\nu,T)=\nu^{a_r}\tilde c_r(\nu,T),
+\qquad \tilde c_r(0,T)\neq0,
+\qquad r\in\{2k-1-i,2k-1-j\},
+\]
+and define the reduced resultants
+\[
+R^{(k)}_{i,j}(T)=
+\operatorname{Res}_{\nu}\bigl(\tilde c_{2k-1-i}(\nu,T),
+\tilde c_{2k-1-j}(\nu,T)\bigr),
+\qquad
+M_k(T)=\prod_{1\le i<j\le k-1}R^{(k)}_{i,j}(T).
+\]
+Set
+\[
+\mathcal S_k(T)=\gcd\bigl(G_k(T),M_k(T)\bigr),
+\qquad
+G_k(T)=\gcd(D_q(T)+T,D_{q+1}(T)),
+\]
+with the convention that \(M_k=0\) if some resultant is identically zero. Then every solution of the general \(n=2k\) system \eqref{eq:uniform-system} forces the minimal polynomial of \(\tau\) to divide \(\mathcal S_k(T)\). This gives a necessary filter for every even degree. The Frobenius orbit of \(\tau\) has length dividing \(k\); in the prime half-degree case \(k=p\) treated in Section~\ref{sec:2p}, it has length exactly \(p\). An auxiliary gcd identity for the symmetric coefficient weights is recorded in Appendix~\ref{app:arith}; it is not used in this reduction.
+
+\section{The subfamily \texorpdfstring{$n=2p$}{n=2p}}
+\label{sec:2p}
+
+We now specialize the general reduction of Section~\ref{sec:uniform} to the prime half-degree \(k=p\). Thus
+\[
+q=2^p,\qquad
+\mathbb K=\mathbb F_q,\qquad
+\mathbb L=\mathbb F_{q^2},\qquad
+\mathbb H_B=\{x\in\mathbb L^*:x^{q+1}=1\}.
+\]
+If \(\beta=\nu\gamma\) is primitive, Proposition~\ref{prop:uniform-tau} gives
+\[
+\operatorname{ord}(\nu)=q-1=2^p-1,
+\qquad
+\operatorname{ord}(\gamma)=q+1=2^p+1.
+\]
+Set \(\tau=\gamma+\gamma^{-1}\in\mathbb K\). The Frobenius conjugates satisfy
+\[
+\tau_r=\gamma^{2^r}+\gamma^{-2^r}=\tau^{2^r},
+\]
+so a four-zero primitive polynomial determines the Frobenius orbit of \(\tau\), equivalently the minimal polynomial of \(\tau\) over \(\mathbb F_2\).
+
+The uniform Dickson identities become
+\[
+D_{2^p}(\tau)=\tau,
+\qquad
+D_{2^p+1}(\tau)=0.
+\]
+Therefore the minimal polynomial \(m_\tau(T)\) of \(\tau\) divides
+\begin{equation}\label{eq:Gp}
+G_p(T)=\gcd\bigl(D_{2^p}(T)+T,\;D_{2^p+1}(T)\bigr).
+\end{equation}
+
+The uniform factorization specializes to
+\[
+F_{\gamma,\nu}(x)
+=
+N_{\mathbb K/\mathbb F_2}\bigl(x^2+\nu\tau x+\nu^2\bigr),
+\]
+whose roots are
+\[
+\nu^{2^i}\gamma^{2^i},\qquad \nu^{2^i}\gamma^{-2^i},
+\qquad i=0,\ldots,p-1.
+\]
+Its power sums are
+\begin{equation}\label{eq:powersum}
+s_r
+=
+\operatorname{Tr}_{\mathbb K/\mathbb F_2}
+\left(\nu^rD_r(\tau)\right).
+\end{equation}
+Expanding the product \eqref{eq:uniform-factorization} directly, every coefficient \(c_r(\nu,\tau)\) of \(F_{\gamma,\nu}\) is an explicit polynomial in \(\nu,\tau\).
+
+Let the four-zero tail-palindromic condition for a pair $i<j$ be the full system
+\begin{equation}\label{eq:fullsystem}
+\begin{cases}
+c_r(\nu,\tau)=0, & r\in\{i,j,2p-1-i,2p-1-j\},\\
+c_r(\nu,\tau)=1, & r\notin\{i,j,2p-1-i,2p-1-j\},\\
+\nu\in\mathbb K^*,\quad \operatorname{ord}(\nu)=2^p-1,\\
+\gamma\in\mathbb H_B,\quad \operatorname{ord}(\gamma)=2^p+1,\quad \tau=\gamma+\gamma^{-1}.
+\end{cases}
+\end{equation}
+Equation \eqref{eq:fullsystem} is the exact coefficient-and-order formulation of the $n=2p$ subfamily.
+
+For fixed $i<j$, write
+\[
+c_r(\nu,T)=\nu^{a_r}\tilde c_r(\nu,T),\qquad \tilde c_r(0,T)\neq0,
+\]
+and define
+\[
+R_{i,j}(T)=\operatorname{Res}_{\nu}
+\left(\tilde c_{2p-1-i}(\nu,T),\,\tilde c_{2p-1-j}(\nu,T)\right).
+\]
+These two equations are necessary conditions for the full system \eqref{eq:fullsystem}; hence the resulting filter is necessary but not sufficient. Here \(\nu\) is regarded as a formal variable; the order conditions on \(\nu\) and \(\gamma\) are not encoded.
+Set
+\[
+M_p(T)=\prod_{1\le i<j\le p-1}R_{i,j}(T).
+\]
+Then
+\[
+\mathcal S_p(T)=\gcd(G_p(T),M_p(T))
+\]
+is a \emph{necessary filter}: if the full system \eqref{eq:fullsystem} has a solution for a given $\tau$-orbit, then the corresponding minimal polynomial divides $\mathcal S_p(T)$. The reverse implication is not asserted: $M_p$ does not encode all coefficient equalities in \eqref{eq:fullsystem}, nor does it encode the order conditions on $\nu$ and $\gamma$. Thus
+\[
+\mathcal S_p(T)\neq1
+\]
+is a necessary condition for the existence of a four-zero candidate in the $n=2p$ family, but not by itself a sufficient one. A complete resultant system would have to eliminate all equations of \eqref{eq:fullsystem}, not only the two high coefficient equations.
+
+\section{Computational evidence}
+\label{sec:computations}
+
+\subsection{Exact counts}
+
+The four-zero candidates were enumerated for all even $6\le n\le 200$. The total number of primitive candidates is $2663$, and every layer has $N_4(n)>0$. First-solution searches extend to $n\le 300$. Table \ref{tab:counts} gives a representative sample.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{rrrr}
+\toprule
+$n$ & candidates $\binom{n/2-1}{2}$ & $N_4(n)$ & smallest $(i,j)$\\
+\midrule
+6 & 1 & 1 & $(1,2)$\\
+8 & 3 & 1 & $(2,3)$\\
+10 & 6 & 2 & $(1,2)$\\
+14 & 15 & 2 & $(1,5)$\\
+18 & 28 & 5 & $(1,6)$\\
+22 & 45 & 6 & $(1,6)$\\
+26 & 66 & 7 & $(2,3)$\\
+34 & 120 & 6 & $(5,9)$\\
+62 & 435 & 16 & $(1,17)$\\
+126 & 1891 & 55 & $(1,2)$\\
+194 & 4560 & 20 & $(6,65)$\\
+\bottomrule
+\end{tabular}
+\caption{Selected exact counts of four-zero primitive polynomials.}
+\label{tab:counts}
+\end{table}
+
+\subsection{Finite-pair association in the \texorpdfstring{$n=2p$}{n=2p} family}
+
+For $n=2p$ and $1\le i<j\le p-1$, define
+\[
+X_{i,j}=\mathbf 1_{\operatorname{prim}(f_{2p,i,j})}.
+\]
+For fixed $p$ these are deterministic $0/1$ labels on the candidate set
+\[
+I_p=\{(i,j):1\le i<j\le p-1\},\qquad |I_p|=\binom{p-1}{2}=:N.
+\]
+Put $N_4(2p)=\sum_{i<j}X_{i,j}$ and $\mu=N_4(2p)/N$. To record an
+association statistic inside this finite list, choose an unordered pair
+$\{a,b\}$ uniformly from $I_p$ and define
+\begin{equation}\label{eq:kappa}
+\kappa_p=
+\Pr_{\{a,b\}\subset I_p}(X_aX_b=1)-\mu^2
+=
+\frac{\binom{N_4(2p)}{2}}{\binom N2}-\mu^2.
+\end{equation}
+This is a finite-population pair-association statistic. It is not the
+variance of $N_4(2p)$ and we do not use it as a probabilistic variance input.
+
+The exact counts give $\kappa_p<0$ for all odd primes $5\le p\le97$;
+Table \ref{tab:assoc} gives selected values. A negative value says that
+primitive candidates occur in pairs less often than under an independence
+baseline with the same primitive frequency.
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{rrrrr}
+\toprule
+$p$ & $N$ & $N_4(2p)$ & $\mu$ & $\kappa_p$\\
+\midrule
+13 & 66 & 7 & 0.1061 & -0.001459\\
+23 & 231 & 15 & 0.0649 & -0.000264\\
+31 & 435 & 16 & 0.0368 & -0.0000816\\
+41 & 780 & 34 & 0.0436 & -0.0000535\\
+61 & 1770 & 39 & 0.0220 & -0.0000122\\
+83 & 3321 & 66 & 0.0199 & -0.00000587\\
+89 & 3828 & 98 & 0.0256 & -0.00000652\\
+97 & 4560 & 20 & 0.00439 & -0.000000958\\
+\bottomrule
+\end{tabular}
+\caption{Selected finite-pair association statistics for the $n=2p$ family.}
+\label{tab:assoc}
+\end{table}
+
+The table records a negative-association signal; the exact counts give \(\kappa_p<0\) for every odd prime \(5\le p\le97\).
+It is a diagnostic for the finite candidate set and does not assert a variance
+bound; in particular, it is not combined with a Chebyshev argument here.
+
+The following conjecture is suggested by the data.
+
+\begin{conjecture}[Negative finite-pair association]\label{conj:negcorr}
+For every odd prime $p\ge5$,
+\[
+\kappa_p\le0.
+\]
+\end{conjecture}
+
+A crude random-polynomial density heuristic suggests that the count
+$N_4(2p)$ should be of order $p/\log p$: a random monic polynomial of degree
+$2p$ over $\mathbb F_2$ is primitive with probability asymptotic to
+$\varphi(2^{2p}-1)/(2p\,2^{2p})\asymp 1/(p\log p)$. This heuristic is not used
+in the structural results.
+
+\subsection{Reproducibility}
+
+The computations reported here are reproducible from the following Python scripts available from the author:
+\begin{itemize}
+\item \path{_analyze_zero_pairs.py}
+\item \path{_find_palindromic_primitive.py}
+\item \path{_fourzero_n4_two_lines.py}
+\item \path{_fourzero_pair_association.py}
+\item \path{_extend_fourzero_first_202_250.py}
+\item \path{_extend_fourzero_first_252_300.py}
+\end{itemize}
+The factor table used by the enumeration is cached in \path{_factordb_2n_minus_1_cache.json}. The numerical data are available from the author in JSON and Markdown form, including the exact-count table and the finite-pair association table. A general companion repository for related preprints is maintained at \href{https://github.com/63183349121/yijing-mathematical-structures}{the author's GitHub repository}; Paper F assets are available from the author.
+
+\section{Open problems}
+\label{sec:open}
+
+The following problems remain open.
+
+\begin{problem}
+Prove Conjecture \ref{conj:C4}.
+\end{problem}
+
+\begin{problem}
+Prove the $n=2p$ subfamily for all odd primes $p$.
+\end{problem}
+
+\begin{problem}
+Prove Conjecture \ref{conj:negcorr}, or find a counterexample.
+\end{problem}
+
+\begin{problem}
+Determine the selected factors $\mathcal S_p(T)=\gcd(G_p(T),M_p(T))$ without term-by-term coefficient computation.
+\end{problem}
+
+\begin{problem}
+Prove that for $p\ge13$ the map from four-zero primitive polynomials to $\tau$-minimal polynomials is injective. Computations support this for $p\le61$.
+\end{problem}
+
+\section{Discussion}
+\label{sec:discussion}
+
+The structural results above show that the four-zero tail-palindromic problem is not an arbitrary coefficient problem: it is governed by a self-paired space, a quotient by a common fixed-point kernel, an explicit half-space functional, and, in the $n=2p$ case, by a necessary Dickson-factor filter. In the computed range, the finite-pair association statistic for the $n=2p$ family is negative.
+
+At the same time, the main existence question remains open. A single-candidate character-sum approach cannot suffice: for \(n=2p\) there are about \(p^2\) candidates, whereas generic Weil-type error terms have size about \(2^{p/2}\). Thus any analytic proof must exploit cancellation across the entire four-zero family, for example through a second-moment or large-sieve estimate for a probabilistic model of the primitive-event family.
+
+
+\appendix
+
+\section{Auxiliary combinatorial and arithmetic descriptions}
+\label{app:arith}
+
+This appendix records two auxiliary descriptions of the four-zero candidate set. They are not used in the Dickson reduction or in the existence arguments, but they clarify the combinatorial and arithmetic structure of the search domain.
+
+\begin{proposition}[Insertion poset]\label{prop:insertion-poset}
+Let \(k\ge3\) and \(n=2k\). Four-zero tail-palindromic candidates of length \(n\) are in bijection with triples
+\[
+(x,y,z)\in\mathbb Z_{\ge0}^3,\qquad x+y+z=k-3.
+\]
+The corresponding half-code is
+\[
+H_{x,y,z}=1^{x+1}0\,1^y0\,1^z.
+\]
+The number of candidates is therefore
+\[
+\binom{k-1}{2}.
+\]
+Moreover, symmetric insertion corresponds to the three directed moves
+\[
+(x,y,z)\to(x+1,y,z),\quad
+(x,y,z)\to(x,y+1,z),\quad
+(x,y,z)\to(x,y,z+1).
+\]
+Thus the candidate set is the \((k-3)\)-th layer of a three-dimensional Pascal poset, and the number of paths from \((0,0,0)\) to \((x,y,z)\) is the multinomial coefficient
+\[
+\binom{k-3}{x,y,z}.
+\]
+\end{proposition}
+
+\begin{proof}
+A tail-palindromic code of length \(2k\) is determined by its first half of length \(k\). The four zeros occur in two symmetric pairs. In the first half, write the two zeros with gaps \(x,y,z\), so that the half-code is \(1^{x+1}0\,1^y0\,1^z\). Then
+\[
+(x+1)+1+y+1+z=k,
+\]
+hence \(x+y+z=k-3\). Conversely, every such triple determines a four-zero tail-palindromic code by reflection.
+
+Adding one to \(x\), \(y\), or \(z\) is exactly the insertion of a pair of \(1\)'s at one of the three gaps while preserving palindrome. Therefore the directed graph is the three-dimensional Pascal poset, and the path count is the standard multinomial coefficient.
+\end{proof}
+
+\begin{proposition}[Symmetric-weight gcd]\label{prop:weight-gcd}
+Let \(n=2k\) and let \((i,n-1-i)\) be a symmetric zero pair of a four-zero candidate. Define
+\[
+A_{n,i}=2^i+2^{n-1-i}.
+\]
+Then
+\[
+\boxed{
+\gcd(A_{n,i},2^n-1)
+=
+2^{\gcd(k,2i+1)}+1.
+}
+\]
+The same formula holds with \(i\) replaced by the other zero position \(j\).
+\end{proposition}
+
+\begin{proof}
+Write \(d=n-1-2i\). Since \(n\) is even, \(d\) is odd, and
+\[
+A_{n,i}=2^i(1+2^d).
+\]
+Because \(\gcd(2^i,2^n-1)=1\),
+\[
+\gcd(A_{n,i},2^n-1)=\gcd(2^d+1,2^n-1).
+\]
+Let \(e=\gcd(n,d)=\gcd(n,2i+1)\). Since \(n=2k\) and \(2i+1\) is odd, this equals \(\gcd(k,2i+1)\). The inclusion \(2^e+1\mid\gcd(2^d+1,2^n-1)\) is immediate from the two divisibilities.
+
+Conversely, let \(\ell\) be a prime divisor of \(\gcd(2^d+1,2^n-1)\), and let \(h=\operatorname{ord}_\ell(2)\). Then \(h\mid n\) and \(h\mid 2d\) but \(h\nmid d\). Since \(d\) is odd, \(h=2f\) with \(f\mid d\) and \(f\mid n\). Hence \(f\mid e\), and because \(e/f\) is odd, \(\ell\mid2^e+1\). Therefore the two gcds are equal.
+\end{proof}
+
+
+\begin{thebibliography}{99}
+
+\bibitem{Coh90}
+S. D. Cohen,
+\emph{Primitive elements and polynomials with arbitrary trace},
+Discrete Math. \textbf{83} (1990), 1--7.
+
+\bibitem{Mor}
+O. Moreno,
+\emph{On the existence of a primitive quadratic of trace $1$ over $GF(p^m)$},
+J.~Combin.~Theory Ser.~A \textbf{51} (1989), 104--110.
+
+\bibitem{Coh03}
+S. D. Cohen,
+\emph{The orders of related elements of a finite field},
+Ramanujan J. \textbf{7} (2003), 169--183.
+
+\bibitem{Coh06}
+S. D. Cohen,
+\emph{Primitive polynomials with a prescribed coefficient},
+Finite Fields Appl. \textbf{12} (2006), 425--491.
+
+\bibitem{Han04}
+J. Han,
+\emph{Primitive polynomial with three coefficients prescribed},
+Finite Fields Appl. \textbf{10} (2004), 1--20.
+
+\bibitem{Fan09}
+S. Fan,
+\emph{Primitive normal polynomials with the last half coefficients prescribed},
+Finite Fields Appl. \textbf{15} (2009), 604--614.
+
+\bibitem{Gar11}
+T. Garefalakis,
+\emph{Self-reciprocal irreducible polynomials with prescribed coefficients},
+Finite Fields Appl. \textbf{17} (2011), 183--193.
+
+\bibitem{Gao23}
+Z. Gao,
+\emph{New estimates and existence results about irreducible polynomials and self-reciprocal irreducible polynomials with prescribed coefficients over a finite field},
+La Matematica \textbf{2} (2023), 789--815.
+
+\bibitem{GPT}
+C. Gravel, D. Panario, and D. Thomson,
+\emph{Unicyclic strong permutations},
+arXiv:1809.03551, accessed 14 September 2026.
+
+\bibitem{LN}
+R. Lidl and H. Niederreiter,
+\emph{Finite Fields},
+Encyclopedia of Mathematics and its Applications, vol.~20, 2nd ed., Cambridge University Press, 1997.
+
+\end{thebibliography}
+
+\end{document}

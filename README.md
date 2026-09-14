@@ -1,6 +1,6 @@
 Yijing Mathematical Structures
 Independent research on finite-field, combinatorial, and affine structures inspired by the Yijing.
-Current preprint
+Current preprints
 An affine Singer layer on F2^6, its (T,D,K) triple, and <T,D> = AGL(1,64)
 [image]
 This preprint studies an affine Singer layer on F_2^6 and its associated triple (T,D,K) , where
@@ -15,11 +15,16 @@ The theorem itself is classical. The historical attribution is:
 ● Moreno (1989);
 ● an equivalent square-order formulation in Cohen (2003), Theorem 1.5, p. 170.
 No new priority is claimed.
+
+Paper F preprint
+Four-zero tail-palindromic primitive polynomials: coefficient geometry, Dickson reduction, and computational evidence.
+This preprint studies four-zero tail-palindromic candidates over F_2, their self-paired coefficient geometry, the uniform Dickson/tau reduction, finite-pair association statistics for n=2p, and computational evidence.
 Repository contents
 ● PaperA_singer_TDK.pdf - main preprint.
 ● PaperA_singer_TDK.tex - LaTeX source.
 ● verify_k1_29.py - deterministic verifier for the finite certificate.
 ● PaperD_primitive_trace_even_detailed_supplement.pdf - detailed proof archive.
+● PaperF_fourzero/ - Paper F preprint, PDF, reproducibility scripts, and data tables.
 Reproduce the finite certificate
 python verify_k1_29.py
 Expected final line:

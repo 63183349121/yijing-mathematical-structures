@@ -1,0 +1,227 @@
+[
+  {
+    "n": 202,
+    "found": [
+      1,
+      5
+    ],
+    "tested": 4,
+    "seconds": 3.699
+  },
+  {
+    "n": 204,
+    "found": [
+      1,
+      63
+    ],
+    "tested": 62,
+    "seconds": 6.062
+  },
+  {
+    "n": 206,
+    "found": [
+      1,
+      26
+    ],
+    "tested": 25,
+    "seconds": 2.372
+  },
+  {
+    "n": 208,
+    "found": [
+      1,
+      42
+    ],
+    "tested": 41,
+    "seconds": 2.891
+  },
+  {
+    "n": 210,
+    "found": [
+      2,
+      38
+    ],
+    "tested": 139,
+    "seconds": 5.824
+  },
+  {
+    "n": 212,
+    "found": [
+      2,
+      22
+    ],
+    "tested": 124,
+    "seconds": 6.363
+  },
+  {
+    "n": 214,
+    "found": [
+      1,
+      78
+    ],
+    "tested": 77,
+    "seconds": 3.892
+  },
+  {
+    "n": 216,
+    "found": [
+      2,
+      7
+    ],
+    "tested": 111,
+    "seconds": 6.218
+  },
+  {
+    "n": 218,
+    "found": [
+      2,
+      9
+    ],
+    "tested": 114,
+    "seconds": 5.149
+  },
+  {
+    "n": 220,
+    "found": [
+      1,
+      54
+    ],
+    "tested": 53,
+    "seconds": 3.839
+  },
+  {
+    "n": 222,
+    "found": [
+      1,
+      82
+    ],
+    "tested": 81,
+    "seconds": 4.034
+  },
+  {
+    "n": 224,
+    "found": [
+      3,
+      41
+    ],
+    "tested": 257,
+    "seconds": 9.074
+  },
+  {
+    "n": 226,
+    "found": [
+      1,
+      77
+    ],
+    "tested": 76,
+    "seconds": 3.936
+  },
+  {
+    "n": 228,
+    "found": [
+      1,
+      96
+    ],
+    "tested": 95,
+    "seconds": 4.961
+  },
+  {
+    "n": 230,
+    "found": [
+      6,
+      92
+    ],
+    "tested": 641,
+    "seconds": 20.137
+  },
+  {
+    "n": 232,
+    "found": [
+      1,
+      39
+    ],
+    "tested": 38,
+    "seconds": 6.354
+  },
+  {
+    "n": 234,
+    "found": [
+      1,
+      20
+    ],
+    "tested": 19,
+    "seconds": 7.766
+  },
+  {
+    "n": 236,
+    "found": [
+      2,
+      61
+    ],
+    "tested": 175,
+    "seconds": 9.039
+  },
+  {
+    "n": 238,
+    "found": [
+      1,
+      25
+    ],
+    "tested": 24,
+    "seconds": 2.687
+  },
+  {
+    "n": 240,
+    "found": [
+      2,
+      38
+    ],
+    "tested": 154,
+    "seconds": 7.771
+  },
+  {
+    "n": 242,
+    "found": [
+      1,
+      107
+    ],
+    "tested": 106,
+    "seconds": 6.295
+  },
+  {
+    "n": 244,
+    "found": [
+      2,
+      83
+    ],
+    "tested": 201,
+    "seconds": 10.879
+  },
+  {
+    "n": 246,
+    "found": [
+      1,
+      46
+    ],
+    "tested": 45,
+    "seconds": 6.714
+  },
+  {
+    "n": 248,
+    "found": [
+      1,
+      119
+    ],
+    "tested": 118,
+    "seconds": 11.583
+  },
+  {
+    "n": 250,
+    "found": [
+      2,
+      31
+    ],
+    "tested": 152,
+    "seconds": 8.434
+  }
+]
