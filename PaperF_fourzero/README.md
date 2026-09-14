@@ -49,7 +49,7 @@ Reproducibility:
 - `_fourzero_factors_6_300.txt`
 
 General companion repository for related preprints:
-https://github.com/63183349121/yijing-mathematical-structures
+https://github.com/63331849121/yijing-mathematical-structures
 
 Paper F assets are available from the author and in this directory.
 

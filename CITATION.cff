@@ -8,7 +8,7 @@ authors:
 date-released: "2026-09-13"
 doi: "10.5281/zenodo.22731492"
 url: "https://doi.org/10.5281/zenodo.22731492"
-repository-code: "https://github.com/63183349121/yijing-mathematical-structures"
+repository-code: "https://github.com/63331849121/yijing-mathematical-structures"
 keywords:
   - finite fields
   - combinatorics
@@ -17,3 +17,4 @@ keywords:
   - permutation
 license: CC-BY-4.0
 type: preprint
+
